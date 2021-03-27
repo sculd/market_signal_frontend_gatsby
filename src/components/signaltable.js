@@ -142,7 +142,7 @@ function SignalTable() {
   }, []);
 
   return (
-    <Table columns={columns} data={items} />
+    <Table columns={columns} data={(items === undefined) ? [] : items} />
   );
 }
 
