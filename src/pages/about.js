@@ -5,9 +5,13 @@ export default function About() {
   return (
     <Layout>
         <div>
-        <h1>About me</h1>
+        <h1>About</h1>
         <p>
-            I’m good enough, I’m smart enough, and gosh darn it, people like me!
+            Market signal picker detects the big market movers in "real" time.
+            So that "you" can profit from the big opportunities.
+        </p>
+        <p>
+            <a href="mailto:me@example.com">me@example.com</a>
         </p>
         </div>
     </Layout>
