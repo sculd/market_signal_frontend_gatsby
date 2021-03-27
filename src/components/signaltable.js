@@ -143,6 +143,7 @@ function SignalTable() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  console.log(process.env.REACT_APP_API_GATEWAY_API_KEY)
   useEffect(() => {
     fetch(
       "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves/",
