@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTable, usePagination } from "react-table";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -139,70 +141,39 @@ function Table({ columns, data }) {
 }
 
 function SignalTable() {
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Name",
-        columns: [
-          {
-            Header: "Date",
-            accessor: "date"
-          },
-          {
-            Header: "Datetime",
-            accessor: row => new Date(row.datetime_et).toLocaleString()
-          }
-        ]
-      },
-      {
-        Header: "Info",
-        columns: [
-          {
-            Header: "Symbol",
-            accessor: "symbol"
-          },
-          {
-            Header: "Price",
-            accessor: "close"
-          },
-          {
-            Header: "Jump",
-            accessor: "max_jump"
-          },
-          {
-            Header: "Drop",
-            accessor: "min_drop"
-          }
-        ]
-      }
-    ],
-    []
-  );
-
-  const testResults = [
-    {
-      close: "36.085",
-      date: "2021-03-26",
-      datetime: "2021-03-26T04:26:01-0400",
-      datetime_et: "2021-03-26 00:26:01.399688-04:00",
-      max_jump: 0.146,
-      min_drop: 0.0,
-      symbol: "BTCSTUSDT",
-      window_size_minutes: 10
-    },
-    {
-      close: "36.108",
-      date: "2021-03-26",
-      datetime: "2021-03-26T04:26:14-0400",
-      datetime_et: "2021-03-26 00:26:14.809617-04:00",
-      max_jump: 0.149,
-      min_drop: 0.0,
-      symbol: "BTCSTBUSD",
-      window_size_minutes: 10
-    }
-  ];
-
-  const data = React.useMemo(() => testResults, []);
+  function getColumns(headerStr) {
+    return [
+        {
+          Header: headerStr,
+          columns: [
+            {
+              Header: "Date",
+              accessor: "date"
+            },
+            {
+              Header: "Datetime",
+              accessor: row => new Date(row.datetime_et).toLocaleString()
+            },
+            {
+              Header: "Symbol",
+              accessor: "symbol"
+            },
+            {
+              Header: "Price",
+              accessor: "close"
+            },
+            {
+              Header: "Jump",
+              accessor: "max_jump"
+            },
+            {
+              Header: "Drop",
+              accessor: "min_drop"
+            }
+          ]
+        }
+      ];
+  }
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -234,10 +205,22 @@ function SignalTable() {
       }
     });
   }, []);
-
+  
   return (
     <Styles>
-      <Table columns={columns} data={(items === undefined) ? [] : items} />
+      <Tabs>
+        <TabList>
+          <Tab>Stock</Tab>
+          <Tab>Crypto</Tab>
+        </TabList>
+    
+        <TabPanel>
+          <Table columns={React.useMemo(() => getColumns("Stock Signals"), [])} data={(items === undefined) ? [] : items} />
+        </TabPanel>
+        <TabPanel>
+          <Table columns={React.useMemo(() => getColumns("Crypto Signals"), [])} data={(items === undefined) ? [] : items} />
+        </TabPanel>
+      </Tabs>
     </Styles>
   );
 }
