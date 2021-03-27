@@ -143,14 +143,14 @@ function SignalTable() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  console.log(process.env.REACT_APP_API_GATEWAY_API_KEY)
+  console.log(process.env.GATSBY_API_GATEWAY_API_KEY)
   useEffect(() => {
     fetch(
       "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves/",
       {
         method: "get",
         headers: new Headers({
-          "x-api-key": process.env.REACT_APP_API_GATEWAY_API_KEY
+          "x-api-key": process.env.GATSBY_API_GATEWAY_API_KEY
         })
       }
     )
