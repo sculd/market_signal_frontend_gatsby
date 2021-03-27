@@ -135,7 +135,9 @@ function SignalTable() {
     )
     .then(data => {
       setIsLoaded(true);
-      setItems(data);
+      if (items !== undefined) {
+        setItems(data);
+      }
     });
   }, []);
 
