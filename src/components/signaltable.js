@@ -3,6 +3,35 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTable } from "react-table";
 
+const Styles = styled.div`
+  padding: 1rem;
+
+  table {
+    border-spacing: 0;
+    border: 1px solid black;
+
+    tr {
+      :last-child {
+        td {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    th,
+    td {
+      margin: 0;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+      border-right: 1px solid black;
+
+      :last-child {
+        border-right: 0;
+      }
+    }
+  }
+`;
+
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -142,7 +171,9 @@ function SignalTable() {
   }, []);
 
   return (
-    <Table columns={columns} data={(items === undefined) ? [] : items} />
+    <Styles>
+      <Table columns={columns} data={(items === undefined) ? [] : items} />
+    </Styles>
   );
 }
 
