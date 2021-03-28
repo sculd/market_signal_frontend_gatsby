@@ -147,10 +147,6 @@ function SignalTable() {
           Header: headerStr,
           columns: [
             {
-              Header: "Date",
-              accessor: "date"
-            },
-            {
               Header: "Datetime",
               accessor: row => new Date(row.datetime_et).toLocaleString()
             },
@@ -160,15 +156,15 @@ function SignalTable() {
             },
             {
               Header: "Price",
-              accessor: "close"
+              accessor: row => "$" + new String(Number(row.close).toFixed(1))
             },
             {
               Header: "Jump",
-              accessor: "max_jump"
+              accessor: row => new String(Number(row.max_jump * 100).toFixed(2)) + "%"
             },
             {
               Header: "Drop",
-              accessor: "min_drop"
+              accessor: row => new String(Number(row.min_drop * 100).toFixed(2)) + "%"
             }
           ]
         }
