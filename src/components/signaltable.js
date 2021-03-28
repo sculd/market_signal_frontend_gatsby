@@ -3,6 +3,12 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useTable, usePagination } from "react-table";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import CssBaseline from '@material-ui/core/CssBaseline'
+import MaUTable from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
 import 'react-tabs/style/react-tabs.css';
 
 const Styles = styled.div`
@@ -65,29 +71,29 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <table {...getTableProps()}>
-        <thead>
+      <MaUTable {...getTableProps()}>
+        <TableHead>
           {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                <TableCell {...column.getHeaderProps()}>{column.render('Header')}</TableCell>
               ))}
-            </tr>
+            </TableRow>
           ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
+        </TableHead>
+        <TableBody {...getTableBodyProps()}>
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <TableRow {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return <TableCell {...cell.getCellProps()}>{cell.render('Cell')}</TableCell>
                 })}
-              </tr>
+              </TableRow>
             )
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </MaUTable>
       {/* 
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:
@@ -211,9 +217,11 @@ function SignalTable() {
         </TabList>
     
         <TabPanel>
+          <CssBaseline />
           <Table columns={React.useMemo(() => getColumns("Stock Signals"), [])} data={(items === undefined) ? [] : items} />
         </TabPanel>
         <TabPanel>
+          <CssBaseline />
           <Table columns={React.useMemo(() => getColumns("Crypto Signals"), [])} data={(items === undefined) ? [] : items} />
         </TabPanel>
       </Tabs>
