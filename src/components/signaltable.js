@@ -179,11 +179,12 @@ function SignalTable() {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
+  const [stockItems, setStockIItems] = useState([]);
+  const [cryptoItems, setCryptoItems] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves/",
+      "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=stock",
       {
         method: "get",
         headers: new Headers({
@@ -202,8 +203,35 @@ function SignalTable() {
     )
     .then(data => {
       setIsLoaded(true);
-      if (items !== undefined) {
-        setItems(data);
+      if (stockItems !== undefined) {
+        setStockIItems(data);
+      }
+    });
+  }, []);
+  
+  useEffect(() => {
+    fetch(
+      "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=crypto",
+      {
+        method: "get",
+        headers: new Headers({
+          "x-api-key": process.env.GATSBY_API_GATEWAY_API_KEY
+        })
+      }
+    )
+    .then(
+      (response) => {
+      return response.json();
+      },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+      }
+    )
+    .then(data => {
+      setIsLoaded(true);
+      if (cryptoItems !== undefined) {
+        setCryptoItems(data);
       }
     });
   }, []);
@@ -218,11 +246,11 @@ function SignalTable() {
     
         <TabPanel>
           <CssBaseline />
-          <Table columns={React.useMemo(() => getColumns("Stock Signals"), [])} data={(items === undefined) ? [] : items} />
+          <Table columns={React.useMemo(() => getColumns("Stock Signals"), [])} data={(stockItems === undefined) ? [] : stockItems} />
         </TabPanel>
         <TabPanel>
           <CssBaseline />
-          <Table columns={React.useMemo(() => getColumns("Crypto Signals"), [])} data={(items === undefined) ? [] : items} />
+          <Table columns={React.useMemo(() => getColumns("Crypto Signals"), [])} data={(cryptoItems === undefined) ? [] : cryptoItems} />
         </TabPanel>
       </Tabs>
     </Styles>
