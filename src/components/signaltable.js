@@ -132,7 +132,7 @@ function CustomPaginationActionsTable({ rows }) {
             : rows
           ).map((row) => (
             <TableRow key={row.datetime}>
-              <TableCell component="th" scope="row">
+              <TableCell style={{ width: 350 }}  component="th" scope="row">
                 {new Date(row.datetime_et).toLocaleString()}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
