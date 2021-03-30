@@ -124,6 +124,7 @@ function CustomPaginationActionsTable({ rows }) {
             <TableCell align="right">Price</TableCell>
             <TableCell align="right">Jump</TableCell>
             <TableCell align="right">Drop</TableCell>
+            <TableCell align="right">Window</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -146,6 +147,9 @@ function CustomPaginationActionsTable({ rows }) {
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {new String(Number(row.min_drop * 100).toFixed(2)) + "%"}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.window_size_minutes}
               </TableCell>
             </TableRow>
           ))}
