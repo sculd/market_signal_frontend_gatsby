@@ -215,10 +215,13 @@ const Styles = styled.div`
 function SignalTable() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isStockLoading, setIsStockLoading] = useState(true);
+  const [isCryptoLoading, setIsCryptoLoading] = useState(true);
   const [stockItems, setStockIItems] = useState([]);
   const [cryptoItems, setCryptoItems] = useState([]);
 
-  useEffect(() => {
+  function fetchUpdateStock() {
+    setIsStockLoading(true);
     fetch(
       "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=stock",
       {
@@ -239,13 +242,15 @@ function SignalTable() {
     )
     .then(data => {
       setIsLoaded(true);
+      setIsStockLoading(false);
       if (stockItems !== undefined) {
         setStockIItems(data);
       }
     });
-  }, []);
-  
-  useEffect(() => {
+  }
+
+  function fetchUpdateCrypto() {
+    setIsCryptoLoading(true);
     fetch(
       "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=crypto",
       {
@@ -266,12 +271,39 @@ function SignalTable() {
     )
     .then(data => {
       setIsLoaded(true);
+      setIsCryptoLoading(false);
       if (cryptoItems !== undefined) {
         setCryptoItems(data);
       }
     });
+  }
+
+  function onInterval() {
+    fetchUpdateStock();
+    fetchUpdateCrypto();
+  }
+  
+  useEffect(() => {
+    const interval = setInterval(() => onInterval(), 1000 * 60);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    fetchUpdateStock();
+  }, []);
+  
+  useEffect(() => {
+    fetchUpdateCrypto();
   }, []);
     
+  const Loading = () => (
+    <div>
+      Loading...
+    </div>
+  )
+
   return (
     <Styles>
       <Tabs>
@@ -280,6 +312,9 @@ function SignalTable() {
           <Tab>Crypto</Tab>
         </TabList>
     
+        <div>
+          { isStockLoading || isCryptoLoading ? <Loading /> : null }
+        </div>
         <TabPanel>
           <CustomPaginationActionsTable rows={stockItems} />
         </TabPanel>
