@@ -20,6 +20,7 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 const paginationStyles = makeStyles((theme) => ({
   root: {
@@ -97,6 +98,12 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
+const theme = createMuiTheme({
+  typography: {
+      fontSize: 11
+  },
+});
+ 
 function CustomPaginationActionsTable({ rows }) {
   const classes = tableStyle();
   const wrapClasses = tableWrapStyle();
@@ -118,6 +125,7 @@ function CustomPaginationActionsTable({ rows }) {
   };
 
   return (
+    <MuiThemeProvider theme={theme}>
     <TableContainer component={Paper} className={wrapClasses.table}>
       <Table className={classes.table} size="small" aria-label="custom pagination table">
         <TableHead>
@@ -183,6 +191,7 @@ function CustomPaginationActionsTable({ rows }) {
         </TableFooter>
       </Table>
     </TableContainer>
+    </MuiThemeProvider>
   );
 }
 
