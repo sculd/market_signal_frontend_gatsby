@@ -231,7 +231,7 @@ function SignalDataGrid() {
           { isStockLoading || isCryptoLoading ? <Loading /> : null }
         </div>
         <TabPanel>
-          <DataGridWithRows rows={cryptoItems} />
+          <DataGridWithRows rows={stockItems} />
         </TabPanel>
         <TabPanel>
           <DataGridWithRows rows={cryptoItems} />
