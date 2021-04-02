@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../components/layout"
 import SignalTable from "../components/signaltable"
+import SignalDataGrid from "../components/signaldatagrid"
 
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
       <p>
         Where the big moves happen, so do the big opportunities.
       </p>
-      <SignalTable />
+      <SignalDataGrid />
+      
     </Layout>
   );
 }
