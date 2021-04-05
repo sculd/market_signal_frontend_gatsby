@@ -33,6 +33,14 @@ const columns = [
     },
     { field: 'symbol', headerName: 'Symbol', type: 'number', width: 130 },
     {
+      field: 'recent_price',
+      headerName: 'Current',
+      type: 'number',
+      valueGetter: ({ value }) => value,
+      valueFormatter: ({ value }) => "$" + new String(Number(value).toFixed(1)),
+      width: 90,
+    },
+    {
       field: 'close',
       headerName: 'Price',
       type: 'number',
