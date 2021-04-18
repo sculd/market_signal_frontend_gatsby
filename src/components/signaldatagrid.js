@@ -81,6 +81,14 @@ const columns = [
       width: 100,
     },
     {
+      field: 'price_at_min_drop',
+      headerName: 'Drop Price',
+      type: 'number',
+      valueGetter: ({ value }) => value,
+      valueFormatter: ({ value }) => "$" + new String(Number(value).toFixed(1)),
+      width: 100,
+    },
+    {
       field: 'min_drop_epoch_seconds',
       headerName: 'Drop@',
       type: 'dateTime',
