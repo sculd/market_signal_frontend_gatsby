@@ -102,6 +102,14 @@ const columns = [
       type: 'number',
       width: 90,
     },
+    {
+      field: 'threshold',
+      headerName: 'Threshold',
+      type: 'number',
+      valueGetter: ({ value }) => Number(value * 100).toFixed(2),
+      valueFormatter: ({ value }) => new String(value) + "%",
+      width: 100,
+    },
     ];
 
 const theme = createMuiTheme({
