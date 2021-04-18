@@ -1,7 +1,8 @@
 import React from "react"
 import Layout from "../components/layout"
 import SignalTable from "../components/signaltable"
-import SignalDataGrid from "../components/signaldatagrid"
+//import SignalDataGrid from "../components/signaldatagrid"
+import SignalDataGrid from "../components/signalsreactdatagrid"
 
 export default function Home() {
   return (
