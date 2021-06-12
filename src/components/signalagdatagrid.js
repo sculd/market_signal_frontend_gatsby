@@ -6,6 +6,9 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import styled from "styled-components";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import {LicenseManager} from "ag-grid-enterprise";
+
+// LicenseManager.setLicenseKey("your license key");
 
 const Styles = styled.div`
   padding: 1rem;
