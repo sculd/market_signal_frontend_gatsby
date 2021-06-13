@@ -206,15 +206,10 @@ const SignalAgDataGrid = () => {
                     >
                     <AgGridColumn field="datetime_et" headerName="Time" sortable={true} valueFormatter={datetimeFormatter} />
                     <AgGridColumn field="symbol" headerName="Symbol" filter="agSetColumnFilter" />
-                    <AgGridColumn field="recent_price" headerName="Current" sortable={true} filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="max_jump" headerName="Max Jump" sortable={true} filter="agNumberColumnFilter" valueGetter={maxJumpValueGetter} valueFormatter={percentFormatter} />
-                    <AgGridColumn field="price_at_max_jump" headerName="Max Jump To" filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="max_jump_epoch_seconds" headerName="Max Jump @" filter="agNumberColumnFilter" valueFormatter={epochFormatter} />
-                    <AgGridColumn field="min_drop" headerName="Min Drop" sortable={true} filter="agNumberColumnFilter" valueGetter={minDropValueGetter} valueFormatter={percentFormatter} />
-                    <AgGridColumn field="price_at_min_drop" headerName="Min Drop To" filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="min_drop_epoch_seconds" headerName="Min Drop @" filter="agNumberColumnFilter" valueFormatter={epochFormatter} />
                     <AgGridColumn field="window_size_minutes" headerName="Window" filter="agSetColumnFilter" />
-                    <AgGridColumn field="threshold" headerName="Threshold" filter="agSetColumnFilter" valueGetter={thresholdValueGetter} valueFormatter={percentFormatter} />
+                    <AgGridColumn field="recent_price" headerName="Current" sortable={true} filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
+                    <AgGridColumn field="type_str" headerName="Type" sortable={true} filter="agSetColumnFilter" />
+                    <AgGridColumn field="summary" headerName="Summary" />
                 </AgGridReact>
             </div>
         </TabPanel>
@@ -233,15 +228,11 @@ const SignalAgDataGrid = () => {
                     >
                     <AgGridColumn field="datetime_et" headerName="Time" sortable={true} valueFormatter={datetimeFormatter} />
                     <AgGridColumn field="symbol" headerName="Symbol" filter="agSetColumnFilter" />
-                    <AgGridColumn field="recent_price" headerName="Current" sortable={true} filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="max_jump" headerName="Max Jump" sortable={true} filter="agNumberColumnFilter" valueGetter={maxJumpValueGetter} valueFormatter={percentFormatter} />
-                    <AgGridColumn field="price_at_max_jump" headerName="Max Jump To" filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="max_jump_epoch_seconds" headerName="Max Jump @" filter="agNumberColumnFilter" valueFormatter={epochFormatter} />
-                    <AgGridColumn field="min_drop" headerName="Min Drop" sortable={true} filter="agNumberColumnFilter" valueGetter={minDropValueGetter} valueFormatter={percentFormatter} />
-                    <AgGridColumn field="price_at_min_drop" headerName="Min Drop To" filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
-                    <AgGridColumn field="min_drop_epoch_seconds" headerName="Min Drop @" filter="agNumberColumnFilter" valueFormatter={epochFormatter} />
-                    <AgGridColumn field="window_size_minutes" headerName="Window" filter="agSetColumnFilter" />
                     <AgGridColumn field="threshold" headerName="Threshold" filter="agSetColumnFilter" valueGetter={thresholdValueGetter} valueFormatter={percentFormatter} />
+                    <AgGridColumn field="window_size_minutes" headerName="Window" filter="agSetColumnFilter" />
+                    <AgGridColumn field="recent_price" headerName="Current" sortable={true} filter="agNumberColumnFilter" valueFormatter={dollarFormatter} />
+                    <AgGridColumn field="type_str" headerName="Type" sortable={true} filter="agSetColumnFilter" />
+                    <AgGridColumn field="summary" headerName="Summary" />
                 </AgGridReact>
             </div>
         </TabPanel>
