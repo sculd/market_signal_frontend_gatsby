@@ -169,7 +169,7 @@ function SignalDataGrid() {
   function fetchUpdateCrypto() {
     setIsCryptoLoading(true);
     fetch(
-      "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=crypto",
+      "https://7tj23qrgl1.execute-api.us-east-2.amazonaws.com/test/moves?market=binance",
       {
         method: "get",
         headers: new Headers({
